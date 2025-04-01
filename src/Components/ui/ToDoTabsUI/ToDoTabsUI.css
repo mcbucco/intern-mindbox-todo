@@ -1,0 +1,24 @@
+/* .todo_stats {
+  border: 1px solid transparent;
+} */
+
+.allBtn,
+.activeBtn,
+.completedBtn {
+  font-size: .8rem;
+  color: #9b9292;
+  background-color: transparent;
+  border: none;
+}
+
+.allBtn__active {
+  border: 1px solid #9b9494;
+}
+
+.activeBtn__active {
+  border: 1px solid #9b9494;
+}
+
+.completedBtn__active {
+  border: 1px solid #9b9494;
+}

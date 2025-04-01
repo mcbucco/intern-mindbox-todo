@@ -1,0 +1,8 @@
+.todo_stats {
+  margin: auto;
+  border: 1px solid #d3c9c9;
+  inline-size: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
