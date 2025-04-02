@@ -1,3 +1,4 @@
+import React from 'react';
 import { useAppContext } from '../AppProvider/AppProvider'
 import './LeftItemsCounter.css'
 

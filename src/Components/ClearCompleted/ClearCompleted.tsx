@@ -1,3 +1,4 @@
+import React from 'react';
 import { ETypes } from "../../utils/reducer";
 import { useAppContext } from "../AppProvider/AppProvider";
 import ButtonUI from "../ui/ButtonUI";

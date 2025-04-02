@@ -16,7 +16,7 @@ const initialState: IAppState = {
   toDoItems: [],
 };
 
-interface IAppContext {
+export interface IAppContext {
   state: IAppState;
   dispatch: React.Dispatch<IAction>;
 }

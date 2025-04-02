@@ -1,3 +1,4 @@
+import React from "react";
 import { IToDoItem } from "../../AppProvider/AppProvider";
 import ButtonUI from "../ButtonUI";
 import "./ToDoItemUi.css";
@@ -25,7 +26,7 @@ const ToDoItemUi: React.FC<IToDoItemUiProps> = ({
       <label className="todo_item__label" htmlFor={item.description}>
         <input
           onChange={() => handleChange(item.id)}
-          type="checkBox"
+          type="checkbox"
           checked={item.isDone}
           id={item.description}
           name={item.description}

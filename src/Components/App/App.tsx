@@ -1,10 +1,11 @@
+import React from "react";
 import AddToDoForm from "../AddToDoForm";
 import AppHeader from "../AppHeader";
 import ControlPanel from "../ControlPanel";
 import ToDoItemsList from "../ToDoItemsList";
 import "./App.css";
 
-function App() {
+const App: React.FC = () => {
   return (
     <>
       <AppHeader />

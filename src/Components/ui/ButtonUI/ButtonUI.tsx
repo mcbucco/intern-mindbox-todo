@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 
 type TButtonUIProps = {
   id?: string;
