@@ -1,50 +1,55 @@
 import React, { createContext, ReactNode, useContext } from "react";
-import { IAppContext } from "../Components/AppProvider/AppProvider"
+import {
+  IAppContext
+} from "../Components/AppProvider/AppContext";
+import { ETabs, IAppState } from "./types";
 
-const mockInitialState = {
+const mockInitialState: IAppState = {
+  currentTab: ETabs.All,
   toDoItems: [
     {
       id: "123",
       description: "123",
       isDone: false,
-      isVisible: true,
     },
     {
       id: "456",
       description: "456",
       isDone: false,
-      isVisible: true,
     },
     {
       id: "789",
       description: "789",
       isDone: true,
-      isVisible: true,
     },
-  ]
-}
+  ],
+};
 
 export const mockDispatch = jest.fn();
 
 export const MockContext = createContext<IAppContext>({
   state: mockInitialState,
-  dispatch: mockDispatch
+  dispatch: mockDispatch,
 });
 
 interface IMockContextProviderProps {
-  children: ReactNode,
+  children: ReactNode;
 }
 
-export const MockContextProvider: React.FC<IMockContextProviderProps> = ({ children }) => {
+export const MockContextProvider: React.FC<IMockContextProviderProps> = ({
+  children,
+}) => {
   const contextValue = useContext(MockContext);
-  return <MockContext.Provider value={contextValue}>{children}</MockContext.Provider>
-}
+  return (
+    <MockContext.Provider value={contextValue}>{children}</MockContext.Provider>
+  );
+};
 
-jest.mock('../Components/AppProvider/AppProvider', () => ({
+jest.mock("../Components/AppProvider/AppContext", () => ({
   useAppContext: () => ({
     state: mockInitialState,
-    dispatch: mockDispatch
-  })
-}))
+    dispatch: mockDispatch,
+  }),
+}));
 
-export default MockContextProvider
+export default MockContextProvider;

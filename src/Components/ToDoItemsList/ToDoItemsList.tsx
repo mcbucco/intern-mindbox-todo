@@ -1,27 +1,37 @@
 import React from "react";
-import { useAppContext } from "../AppProvider/AppProvider";
+import { useAppContext } from "../AppProvider/AppContext";
 import ToDoItemUi from "../ui/ToDoItemUi/ToDoItemUi";
 import { ETypes } from "../../utils/reducer";
+import { ETabs } from "../../utils/types";
 
 const ToDoItemsList: React.FC = () => {
   const { state, dispatch } = useAppContext();
 
-  const handleDelete = (id: string) => dispatch({type: ETypes.Delete, payload: id})
+  const { toDoItems, currentTab } = state;
 
-  const handleChange = (id: string) => dispatch({type: ETypes.Toggle, payload: id})
+  const handleDelete = (id: string) =>
+    dispatch({ type: ETypes.Delete, payload: id });
 
-  const items = state.toDoItems.length > 0
-    ? state.toDoItems.map((item) => (
-      item.isVisible && <ToDoItemUi
-        item={item}
-        key={item.id}
-        onDelete={() => handleDelete(item.id)}
-        onChange={() => handleChange(item.id)}
-      />
-    ))
-    : []
+  const handleChange = (id: string) =>
+    dispatch({ type: ETypes.Toggle, payload: id });
 
-  return <ul className="todo_list">{items}</ul>
+  const itemsToRender =
+    currentTab === ETabs.All
+      ? toDoItems
+      : currentTab === ETabs.Active
+        ? toDoItems.filter((item) => item.isDone === false)
+        : toDoItems.filter((item) => item.isDone === true);
+
+  const renderedItems = itemsToRender.map((item) => (
+    <ToDoItemUi
+      item={item}
+      key={item.id}
+      onDelete={() => handleDelete(item.id)}
+      onChange={() => handleChange(item.id)}
+    />
+  ));
+
+  return <ul className="todo_list">{renderedItems}</ul>;
 };
 
 export default ToDoItemsList;

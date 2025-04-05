@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppContext } from '../AppProvider/AppProvider'
+import { useAppContext } from '../AppProvider/AppContext'
 import './LeftItemsCounter.css'
 
 const LeftItemsCounter: React.FC = () => {

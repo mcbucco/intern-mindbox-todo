@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import ToDoItemUi from "../Components/ui/ToDoItemUi/ToDoItemUi";
-import { IToDoItem } from "../Components/AppProvider/AppProvider";
+import { IToDoItem } from "../utils/types";
 
 describe("`ToDoItemUI` component test", () => {
   let mockHandleChange: jest.Mock;
@@ -13,7 +13,6 @@ describe("`ToDoItemUI` component test", () => {
       id: "123",
       description: "123",
       isDone: false,
-      isVisible: true,
     };
   
     mockHandleChange = jest.fn();

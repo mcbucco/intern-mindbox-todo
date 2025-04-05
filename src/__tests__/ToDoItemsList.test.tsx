@@ -11,7 +11,7 @@ describe('`ToDoItemsList` component test', () => {
         <ToDoItemsList />
       </MockContextProvider>
     );
-    mockDispatch.mockClear()
+    mockDispatch.mockClear();
   })
 
   test('Render test', () => {

@@ -1,4 +1,4 @@
-import { IAppState, IToDoItem } from "../Components/AppProvider/AppProvider";
+import { ETabs, IAppState, IToDoItem } from "../utils/types";
 import { customId } from "./tools";
 
 export enum ETypes {
@@ -21,6 +21,7 @@ function reducer(state: IAppState, action: IAction) {
   switch (type) {
     case ETypes.Add:
       return {
+        ...state,
         toDoItems: [...state.toDoItems, {
           id: customId(),
           description: payload,
@@ -31,11 +32,13 @@ function reducer(state: IAppState, action: IAction) {
     
       case ETypes.Delete:
         return {
+          ...state,
           toDoItems: state.toDoItems.filter(item => item.id !== payload)
         }
     
       case ETypes.Toggle: {
         return {
+          ...state,
           toDoItems: state.toDoItems.map(item => {
             if (item.id === payload) return {
               ...item,
@@ -47,31 +50,25 @@ function reducer(state: IAppState, action: IAction) {
 
       case ETypes.ShowAll:
         return {
-          toDoItems: state.toDoItems.map(item => ({...item, isVisible: true}))
+          ...state,
+          currentTab: ETabs.All
         }
         
       case ETypes.ShowActive:
         return {
-          toDoItems: state.toDoItems.map(item => {
-            if (item.isDone === false) return {
-                ...item,
-                isVisible: true
-              }; else return {...item, isVisible: false}
-          })
+          ...state,
+          currentTab: ETabs.Active
         }
 
       case ETypes.ShowCompleted:
         return {
-          toDoItems: state.toDoItems.map(item => {
-            if (item.isDone === true) return {
-                ...item,
-                isVisible: true
-              }; else return {...item, isVisible: false}
-          })
+          ...state,
+          currentTab: ETabs.Completed
         }
       
       case ETypes.ClearCompleted:
         return {
+          ...state,
           toDoItems: state.toDoItems.filter(item => item.isDone !== true)
         }
 

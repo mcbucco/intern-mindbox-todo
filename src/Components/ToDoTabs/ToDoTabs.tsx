@@ -1,6 +1,6 @@
 import React from 'react';
 import { ETypes } from "../../utils/reducer";
-import { useAppContext } from "../AppProvider/AppProvider";
+import { useAppContext } from "../AppProvider/AppContext";
 import ToDoTabsUI from "../ui/ToDoTabsUI";
 
 const ToDoTabs: React.FC = () => {
