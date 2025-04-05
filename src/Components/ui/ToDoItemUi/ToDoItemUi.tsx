@@ -1,5 +1,5 @@
 import React from "react";
-import { IToDoItem } from "../../AppProvider/AppProvider";
+import { IToDoItem } from "../../../utils/types";
 import ButtonUI from "../ButtonUI";
 import "./ToDoItemUi.css";
 import clsx from "clsx";
