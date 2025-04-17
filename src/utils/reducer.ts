@@ -1,4 +1,4 @@
-import { ETabs, IAppState, IToDoItem } from "../utils/types";
+import { ETabs, IAppState } from "../utils/types";
 import { customId } from "./tools";
 
 export enum ETypes {
@@ -11,40 +11,47 @@ export enum ETypes {
   ClearCompleted = 'CLEAR_COMPLETED_TODOS'
 }
 
-export interface IAction {
-  type: ETypes;
-  payload: Partial<IToDoItem['id']> | string;
+interface IActionWithPayload {
+  type: ETypes.Add | ETypes.Delete | ETypes.Toggle;
+  payload: string;
 }
 
+interface IActionWithNoPayload {
+  type: ETypes.ShowAll | ETypes.ShowActive | ETypes.ShowCompleted | ETypes.ClearCompleted;
+}
+
+export type IAction = IActionWithNoPayload | IActionWithPayload
+
 function reducer(state: IAppState, action: IAction) {
-  const { type, payload } = action;
-  switch (type) {
+  switch (action.type) {
     case ETypes.Add:
       return {
         ...state,
-        toDoItems: [...state.toDoItems, {
-          id: customId(),
-          description: payload,
-          isDone: false,
-          isVisible: true
-        }]
+        toDoItems: [
+          ...state.toDoItems, 
+          {
+            id: customId(),
+            description: action.payload,
+            isDone: false,
+          }
+        ]
       }
     
       case ETypes.Delete:
         return {
           ...state,
-          toDoItems: state.toDoItems.filter(item => item.id !== payload)
+          toDoItems: state.toDoItems.filter(item => item.id !== action.payload)
         }
     
       case ETypes.Toggle: {
         return {
           ...state,
-          toDoItems: state.toDoItems.map(item => {
-            if (item.id === payload) return {
+          toDoItems: [...state.toDoItems.map(item => {
+            if (item.id === action.payload) return {
               ...item,
               isDone: !item.isDone
-            }; else return item           
-          })
+            }; else return item
+          })]
         }
       }
 

@@ -7,7 +7,7 @@ import './ClearCompleted.css'
 const ClearCompleted: React.FC = () => {
   const { dispatch } = useAppContext();
   const handleClick = () =>
-    dispatch({ type: ETypes.ClearCompleted, payload: "clear completed" });
+    dispatch({ type: ETypes.ClearCompleted });
   return <ButtonUI className="clear" onClick={handleClick}>Clear completed</ButtonUI>;
 };
 

@@ -14,46 +14,54 @@ const ToDoTabsUI: React.FC<IToDoTabsUIProps> = ({
   onAllClick,
   onCompletedClick,
 }) => {
-  const [allBtnActive, setAllBtnActive] = useState(true);
-  const [activeBtnActive, setActiveBtnActive] = useState(false);
-  const [completedBtnActive, setCompletedBtnActive] = useState(false);
+  const [[allBtnActive, activeBtnActive, completedBtnActive], setActiveBtn] =
+    useState([true, false, false]);
 
   const handleAllClick = () => {
-    setAllBtnActive(true);
-    setActiveBtnActive(false);
-    setCompletedBtnActive(false);
-    onAllClick()
-  }
+    setActiveBtn([true, false, false]);
+    onAllClick();
+  };
 
   const handleActiveClick = () => {
-    setActiveBtnActive(true);
-    setAllBtnActive(false);
-    setCompletedBtnActive(false)
-    onActiveClick()
-  }
+    setActiveBtn([false, true, false]);
+    onActiveClick();
+  };
 
   const handleCompletedClick = () => {
-    setCompletedBtnActive(true);
-    setActiveBtnActive(false);
-    setAllBtnActive(false);
-    onCompletedClick()
-  }
+    setActiveBtn([false, false, true]);
+    onCompletedClick();
+  };
 
-  const allBtnClass = clsx('allBtn', allBtnActive && 'allBtn__active');
-  const activeBtnClass = clsx('activeBtn', activeBtnActive && 'activeBtn__active');
-  const completedBtnClass = clsx('completedBtn', completedBtnActive && 'completedBtn__active');
+  const allBtnClass = clsx("allBtn", allBtnActive && "allBtn__active");
+  const activeBtnClass = clsx(
+    "activeBtn",
+    activeBtnActive && "activeBtn__active"
+  );
+  const completedBtnClass = clsx(
+    "completedBtn",
+    completedBtnActive && "completedBtn__active"
+  );
+
   return (
-    <div className="todo_stats_buttons">
-      <ButtonUI className={allBtnClass} id="allBtn" onClick={handleAllClick}>
+    <nav className="todo_stats_buttons">
+      <ButtonUI className={allBtnClass} onClick={handleAllClick}>
         All
       </ButtonUI>
-      <ButtonUI className={activeBtnClass} id="activeBtn" onClick={handleActiveClick}>
+      <ButtonUI
+        className={activeBtnClass}
+        id="activeBtn"
+        onClick={handleActiveClick}
+      >
         Active
       </ButtonUI>
-      <ButtonUI className={completedBtnClass} id="completedBtn" onClick={handleCompletedClick}>
+      <ButtonUI
+        className={completedBtnClass}
+        id="completedBtn"
+        onClick={handleCompletedClick}
+      >
         Completed
       </ButtonUI>
-    </div>
+    </nav>
   );
 };
 

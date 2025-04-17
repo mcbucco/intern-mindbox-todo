@@ -7,13 +7,13 @@ const ToDoTabs: React.FC = () => {
   const { dispatch } = useAppContext();
 
   const handleAllClick = () =>
-    dispatch({ type: ETypes.ShowAll, payload: "all" });
+    dispatch({ type: ETypes.ShowAll });
 
   const handleActiveClick = () =>
-    dispatch({ type: ETypes.ShowActive, payload: "active" });
+    dispatch({ type: ETypes.ShowActive });
 
   const handleCompletedClick = () =>
-    dispatch({ type: ETypes.ShowCompleted, payload: "completed" });
+    dispatch({ type: ETypes.ShowCompleted });
 
   return (
     <>

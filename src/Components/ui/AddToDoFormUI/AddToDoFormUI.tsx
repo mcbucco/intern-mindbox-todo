@@ -21,6 +21,8 @@ const AddToDoFormUI: React.FC<IAddToDoFormUIProps> = ({
       <li className="add_todo_form__item" key="new_todo_key">
         <input type="checkBox" disabled checked/>
         <input
+          minLength={1}
+          required
           name="new_todo"
           key="new_todo"
           className="add_todo_form__text"

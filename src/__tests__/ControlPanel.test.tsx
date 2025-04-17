@@ -26,13 +26,13 @@ describe('`ToDoItemsList` component test', () => {
     const panelBtns = screen.getAllByRole('button').slice(0, 3);
     fireEvent.click(panelBtns[0]);
     
-    expect(mockDispatch).toHaveBeenCalledWith({ type: ETypes.ShowAll, payload: 'all' });
+    expect(mockDispatch).toHaveBeenCalledWith({ type: ETypes.ShowAll });
 
     fireEvent.click(panelBtns[1]);
-    expect(mockDispatch).toHaveBeenCalledWith({ type: ETypes.ShowActive, payload: 'active' });
+    expect(mockDispatch).toHaveBeenCalledWith({ type: ETypes.ShowActive });
 
     fireEvent.click(panelBtns[2]);
-    expect(mockDispatch).toHaveBeenCalledWith({ type: ETypes.ShowCompleted, payload: 'completed' });
+    expect(mockDispatch).toHaveBeenCalledWith({ type: ETypes.ShowCompleted });
 
     expect(mockDispatch).toHaveBeenCalledTimes(3);
   });
@@ -41,7 +41,7 @@ describe('`ToDoItemsList` component test', () => {
     const clearBtn = screen.getAllByRole('button')[3];
     fireEvent.click(clearBtn);
 
-    expect(mockDispatch).toHaveBeenCalledWith({ type: ETypes.ClearCompleted, payload: "clear completed" });
+    expect(mockDispatch).toHaveBeenCalledWith({ type: ETypes.ClearCompleted });
     expect(mockDispatch).toHaveBeenCalledTimes(1);
   })
 })
