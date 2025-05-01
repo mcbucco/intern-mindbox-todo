@@ -14,3 +14,7 @@ export interface IAppState {
   toDoItems: IToDoItem[];
   currentTab: ETabs
 }
+
+export type Action<Type extends string, Payload = never> = [Payload] extends [never]
+  ? { type: Type }
+  : { type: Type, payload: Payload }

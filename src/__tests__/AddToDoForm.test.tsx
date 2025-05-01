@@ -1,7 +1,6 @@
 import React from "react"
 import { fireEvent, render, screen } from "@testing-library/react"
 import MockContextProvider, { mockDispatch } from "../utils/MockContextProvider"
-import { ETypes } from "../utils/reducer"
 import AddToDoForm from "../Components/AddToDoForm"
 
 describe('`AddToDoForm` component test', () => {
@@ -26,6 +25,6 @@ describe('`AddToDoForm` component test', () => {
     fireEvent.submit(formText);
     
     expect(mockDispatch).toHaveBeenCalledTimes(1);
-    expect(mockDispatch).toHaveBeenCalledWith({ type: ETypes.Add, payload: '' });
+    expect(mockDispatch).toHaveBeenCalledWith({ type: 'ADD_TODO_ITEM', payload: '' });
   })
 })

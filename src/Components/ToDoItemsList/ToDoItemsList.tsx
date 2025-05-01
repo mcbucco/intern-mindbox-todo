@@ -1,7 +1,6 @@
 import React from "react";
 import { useAppContext } from "../AppProvider/AppContext";
 import ToDoItemUi from "../ui/ToDoItemUi/ToDoItemUi";
-import { ETypes } from "../../utils/reducer";
 import { ETabs } from "../../utils/types";
 
 const ToDoItemsList: React.FC = () => {
@@ -10,10 +9,10 @@ const ToDoItemsList: React.FC = () => {
   const { toDoItems, currentTab } = state;
 
   const handleDelete = (id: string) =>
-    dispatch({ type: ETypes.Delete, payload: id });
+    dispatch({type: 'DELETE_TODO_ITEM', payload: id});
 
   const handleChange = (id: string) =>
-    dispatch({ type: ETypes.Toggle, payload: id });
+    dispatch({ type: 'TOGGLE_TODO_ITEM', payload: id });
 
   const itemsToRender =
     currentTab === ETabs.All

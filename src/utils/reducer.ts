@@ -1,30 +1,18 @@
-import { ETabs, IAppState } from "../utils/types";
+import { Action, ETabs, IAppState } from "../utils/types";
 import { customId } from "./tools";
 
-export enum ETypes {
-  Add = 'ADD_TODO_ITEM',
-  Delete = 'DELETE_TODO_ITEM',
-  Toggle = 'TOGGLE_TODO_ITEM',
-  ShowAll = 'SHOW_ALL_TODOS',
-  ShowActive = 'SHOW_ACTIVE_TODOS',
-  ShowCompleted = 'SHOW_COMPLETED_TODOS',
-  ClearCompleted = 'CLEAR_COMPLETED_TODOS'
-}
+export type ToDoActions = 
+  | Action<'ADD_TODO_ITEM', string>
+  | Action<'DELETE_TODO_ITEM', string>
+  | Action<'TOGGLE_TODO_ITEM', string>
+  | Action<'SHOW_ALL_TODOS'>
+  | Action<'SHOW_ACTIVE_TODOS'>
+  | Action<'SHOW_COMPLETED_TODOS'>
+  | Action<'CLEAR_COMPLETED_TODOS'>
 
-interface IActionWithPayload {
-  type: ETypes.Add | ETypes.Delete | ETypes.Toggle;
-  payload: string;
-}
-
-interface IActionWithNoPayload {
-  type: ETypes.ShowAll | ETypes.ShowActive | ETypes.ShowCompleted | ETypes.ClearCompleted;
-}
-
-export type IAction = IActionWithNoPayload | IActionWithPayload
-
-function reducer(state: IAppState, action: IAction) {
+function reducer(state: IAppState, action: ToDoActions) {
   switch (action.type) {
-    case ETypes.Add:
+    case 'ADD_TODO_ITEM':
       return {
         ...state,
         toDoItems: [
@@ -37,13 +25,13 @@ function reducer(state: IAppState, action: IAction) {
         ]
       }
     
-      case ETypes.Delete:
+      case 'DELETE_TODO_ITEM':
         return {
           ...state,
           toDoItems: state.toDoItems.filter(item => item.id !== action.payload)
         }
     
-      case ETypes.Toggle: {
+      case 'TOGGLE_TODO_ITEM': {
         return {
           ...state,
           toDoItems: [...state.toDoItems.map(item => {
@@ -55,25 +43,25 @@ function reducer(state: IAppState, action: IAction) {
         }
       }
 
-      case ETypes.ShowAll:
+      case 'SHOW_ALL_TODOS':
         return {
           ...state,
           currentTab: ETabs.All
         }
         
-      case ETypes.ShowActive:
+      case 'SHOW_ACTIVE_TODOS':
         return {
           ...state,
           currentTab: ETabs.Active
         }
 
-      case ETypes.ShowCompleted:
+      case 'SHOW_COMPLETED_TODOS':
         return {
           ...state,
           currentTab: ETabs.Completed
         }
       
-      case ETypes.ClearCompleted:
+      case 'CLEAR_COMPLETED_TODOS':
         return {
           ...state,
           toDoItems: state.toDoItems.filter(item => item.isDone !== true)

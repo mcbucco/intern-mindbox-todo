@@ -21,7 +21,7 @@ const ToDoItemUi: React.FC<IToDoItemUiProps> = ({
 
   const toDoClass = clsx("todo_item", item.isDone && "todo_item__isDone");
 
-  return (
+  return (  
     <li className={toDoClass}>
       <label className="todo_item__label" htmlFor={item.description}>
         <input

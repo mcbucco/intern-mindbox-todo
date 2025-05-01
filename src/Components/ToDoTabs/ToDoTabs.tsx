@@ -1,5 +1,4 @@
 import React from 'react';
-import { ETypes } from "../../utils/reducer";
 import { useAppContext } from "../AppProvider/AppContext";
 import ToDoTabsUI from "../ui/ToDoTabsUI";
 
@@ -7,13 +6,13 @@ const ToDoTabs: React.FC = () => {
   const { dispatch } = useAppContext();
 
   const handleAllClick = () =>
-    dispatch({ type: ETypes.ShowAll });
+    dispatch({ type: 'SHOW_ALL_TODOS' });
 
   const handleActiveClick = () =>
-    dispatch({ type: ETypes.ShowActive });
+    dispatch({ type: 'SHOW_ACTIVE_TODOS' });
 
   const handleCompletedClick = () =>
-    dispatch({ type: ETypes.ShowCompleted });
+    dispatch({ type: 'SHOW_COMPLETED_TODOS' });
 
   return (
     <>

@@ -1,10 +1,10 @@
 import { createContext, useContext } from "react";
-import { IAction } from "../../utils/reducer";
 import { ETabs, IAppState } from "../../utils/types";
+import { ToDoActions } from "../../utils/reducer";
 
 export interface IAppContext {
   state: IAppState;
-  dispatch: React.Dispatch<IAction>;
+  dispatch: React.Dispatch<ToDoActions>;
 }
 
 export const initialState: IAppState = {

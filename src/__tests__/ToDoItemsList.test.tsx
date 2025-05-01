@@ -2,7 +2,6 @@ import React from "react"
 import { fireEvent, render, screen } from "@testing-library/react"
 import MockContextProvider, { mockDispatch } from "../utils/MockContextProvider"
 import ToDoItemsList from "../Components/ToDoItemsList"
-import { ETypes } from "../utils/reducer"
 
 describe('`ToDoItemsList` component test', () => {
   beforeEach(() => {
@@ -26,13 +25,13 @@ describe('`ToDoItemsList` component test', () => {
     const deleteBtns = screen.getAllByRole('button');
     fireEvent.click(deleteBtns[0]);
     expect(mockDispatch).toHaveBeenCalledTimes(1);
-    expect(mockDispatch).toHaveBeenCalledWith({type: ETypes.Delete, payload: '123'})
+    expect(mockDispatch).toHaveBeenCalledWith({type: 'DELETE_TODO_ITEM', payload: '123'})
   });
 
   test('Toggle completion handler test', () => {
     const toDoItems = screen.getAllByRole('checkbox');
     fireEvent.click(toDoItems[0]);
     expect(mockDispatch).toHaveBeenCalledTimes(1);
-    expect(mockDispatch).toHaveBeenCalledWith({type: ETypes.Toggle, payload: '123'})
+    expect(mockDispatch).toHaveBeenCalledWith({type: 'TOGGLE_TODO_ITEM', payload: '123'})
   });
 })
