@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { ETabs, IAppState } from "../../utils/types";
+import { IAppState } from "../../utils/types";
 import { ToDoActions } from "../../utils/reducer";
 
 export interface IAppContext {
@@ -9,7 +9,7 @@ export interface IAppContext {
 
 export const initialState: IAppState = {
   toDoItems: [],
-  currentTab: ETabs.All
+  currentTab: 'ALL_ITEMS'
 };
 
 export const AppContext = createContext<IAppContext>({

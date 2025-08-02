@@ -1,7 +1,6 @@
 import React from "react";
 import { useAppContext } from "../AppProvider/AppContext";
 import ToDoItemUi from "../ui/ToDoItemUi/ToDoItemUi";
-import { ETabs } from "../../utils/types";
 
 const ToDoItemsList: React.FC = () => {
   const { state, dispatch } = useAppContext();
@@ -15,9 +14,9 @@ const ToDoItemsList: React.FC = () => {
     dispatch({ type: 'TOGGLE_TODO_ITEM', payload: id });
 
   const itemsToRender =
-    currentTab === ETabs.All
+    currentTab === 'ALL_ITEMS'
       ? toDoItems
-      : currentTab === ETabs.Active
+      : currentTab === 'ACTIVE_ITEMS'
         ? toDoItems.filter((item) => item.isDone === false)
         : toDoItems.filter((item) => item.isDone === true);
 

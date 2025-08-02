@@ -2,23 +2,13 @@
   border: 1px solid transparent;
 } */
 
-.allBtn,
-.activeBtn,
-.completedBtn {
+.todoTabs-button {
   font-size: .8rem;
   color: #9b9292;
   background-color: transparent;
   border: none;
 }
 
-.allBtn__active {
-  border: 1px solid #9b9494;
-}
-
-.activeBtn__active {
-  border: 1px solid #9b9494;
-}
-
-.completedBtn__active {
+.todoTabs-button__active {
   border: 1px solid #9b9494;
 }
