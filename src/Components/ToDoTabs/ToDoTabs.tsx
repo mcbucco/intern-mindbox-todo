@@ -1,28 +1,30 @@
-import React from 'react';
+import React, { useState } from "react";
 import { useAppContext } from "../AppProvider/AppContext";
-import ToDoTabsUI from "../ui/ToDoTabsUI";
+import ToDoTabUI from "../ui/ToDoTabUI";
+import { TTabs } from "../../utils/types";
+import { TAB_LABELS, TABS } from "../../utils/constants";
+import { nanoid } from "nanoid";
 
-const ToDoTabs: React.FC = () => {
+const ToDoTabs = () => {
   const { dispatch } = useAppContext();
 
-  const handleAllClick = () =>
-    dispatch({ type: 'SHOW_ALL_TODOS' });
+  const [activeTab, setActiveTab] = useState<TTabs>("ALL_ITEMS");
 
-  const handleActiveClick = () =>
-    dispatch({ type: 'SHOW_ACTIVE_TODOS' });
+  const handleClick = (tab: TTabs) => {
+    setActiveTab(tab);
+    dispatch({ type: tab });
+  };
 
-  const handleCompletedClick = () =>
-    dispatch({ type: 'SHOW_COMPLETED_TODOS' });
+  const tabs = TABS.map((tab) => (
+    <ToDoTabUI
+      tab={TAB_LABELS[tab] as TTabs}
+      isActive={activeTab === tab}
+      onClick={() => handleClick(tab)}
+      key={nanoid()}
+    />
+  ));
 
-  return (
-    <>
-      <ToDoTabsUI
-        onActiveClick={handleActiveClick}
-        onAllClick={handleAllClick}
-        onCompletedClick={handleCompletedClick}
-      />
-    </>
-  );
+  return <nav>{tabs}</nav>;
 };
 
 export default ToDoTabs;

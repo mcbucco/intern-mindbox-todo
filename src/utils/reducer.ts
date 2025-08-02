@@ -1,14 +1,12 @@
-import { Action, ETabs, IAppState } from "../utils/types";
-import { customId } from "./tools";
+import { nanoid } from "nanoid";
+import { Action, IAppState, TTabs } from "../utils/types";
 
 export type ToDoActions = 
   | Action<'ADD_TODO_ITEM', string>
   | Action<'DELETE_TODO_ITEM', string>
   | Action<'TOGGLE_TODO_ITEM', string>
-  | Action<'SHOW_ALL_TODOS'>
-  | Action<'SHOW_ACTIVE_TODOS'>
-  | Action<'SHOW_COMPLETED_TODOS'>
   | Action<'CLEAR_COMPLETED_TODOS'>
+  | Action<TTabs>
 
 function reducer(state: IAppState, action: ToDoActions) {
   switch (action.type) {
@@ -18,7 +16,7 @@ function reducer(state: IAppState, action: ToDoActions) {
         toDoItems: [
           ...state.toDoItems, 
           {
-            id: customId(),
+            id: nanoid(),
             description: action.payload,
             isDone: false,
           }
@@ -43,22 +41,22 @@ function reducer(state: IAppState, action: ToDoActions) {
         }
       }
 
-      case 'SHOW_ALL_TODOS':
+      case 'ALL_ITEMS':
         return {
           ...state,
-          currentTab: ETabs.All
+          currentTab: 'ALL_ITEMS' as TTabs
         }
         
-      case 'SHOW_ACTIVE_TODOS':
+      case 'ACTIVE_ITEMS':
         return {
           ...state,
-          currentTab: ETabs.Active
+          currentTab: 'ACTIVE_ITEMS' as TTabs
         }
 
-      case 'SHOW_COMPLETED_TODOS':
+      case 'COMPLETED_ITEMS':
         return {
           ...state,
-          currentTab: ETabs.Completed
+          currentTab: 'COMPLETED_ITEMS' as TTabs
         }
       
       case 'CLEAR_COMPLETED_TODOS':

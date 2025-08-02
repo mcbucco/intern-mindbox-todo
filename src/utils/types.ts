@@ -4,15 +4,14 @@ export interface IToDoItem {
   isDone: boolean;
 }
 
-export enum ETabs {
-  All = 'ALL_ITEMS',
-  Active = 'ACTIVE_ITEMS',
-  Completed = 'COMPLETED_ITEMS'
-}
+export type TTabs =
+  | 'ALL_ITEMS'
+  | 'ACTIVE_ITEMS'
+  | 'COMPLETED_ITEMS';
 
 export interface IAppState {
   toDoItems: IToDoItem[];
-  currentTab: ETabs
+  currentTab: TTabs
 }
 
 export type Action<Type extends string, Payload = never> = [Payload] extends [never]
