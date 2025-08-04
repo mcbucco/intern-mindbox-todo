@@ -3,6 +3,7 @@ import ButtonUI from "../ButtonUI";
 import "./ToDoTabUI.css";
 import clsx from "clsx";
 import { TTabs } from "../../../utils/types";
+import { TAB_LABELS } from "../../../utils/constants";
 
 interface IToDoTabUIProps {
   tab: TTabs;
@@ -18,7 +19,7 @@ const ToDoTabUI = ({ tab, isActive, onClick }: IToDoTabUIProps) => {
 
   return (
     <ButtonUI className={tabClass} id={tab} onClick={() => onClick(tab)}>
-      {tab}
+      {TAB_LABELS[tab]}
     </ButtonUI>
   );
 };

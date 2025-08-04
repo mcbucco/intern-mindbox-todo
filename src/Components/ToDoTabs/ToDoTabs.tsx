@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAppContext } from "../AppProvider/AppContext";
 import ToDoTabUI from "../ui/ToDoTabUI";
 import { TTabs } from "../../utils/types";
-import { TAB_LABELS, TABS } from "../../utils/constants";
+import { TABS } from "../../utils/constants";
 import { nanoid } from "nanoid";
 
 const ToDoTabs = () => {
@@ -17,7 +17,7 @@ const ToDoTabs = () => {
 
   const tabs = TABS.map((tab) => (
     <ToDoTabUI
-      tab={TAB_LABELS[tab] as TTabs}
+      tab={tab}
       isActive={activeTab === tab}
       onClick={() => handleClick(tab)}
       key={nanoid()}
