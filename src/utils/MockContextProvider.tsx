@@ -2,10 +2,10 @@ import React, { createContext, ReactNode, useContext } from "react";
 import {
   IAppContext
 } from "../Components/AppProvider/AppContext";
-import { ETabs, IAppState } from "./types";
+import { IAppState } from "./types";
 
 const mockInitialState: IAppState = {
-  currentTab: ETabs.All,
+  currentTab: 'ALL_ITEMS',
   toDoItems: [
     {
       id: "123",
